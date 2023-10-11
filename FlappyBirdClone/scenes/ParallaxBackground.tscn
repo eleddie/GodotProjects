@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://cehxu24xoab10"]
+
+[ext_resource type="Script" path="res://scripts/ParallaxBackground.gd" id="1_rjvk8"]
+[ext_resource type="Texture2D" uid="uid://c3qm8ps2jqurp" path="res://assets/sprites/background-day.png" id="2_5b5ye"]
+[ext_resource type="Texture2D" uid="uid://da2fwmnn85x5u" path="res://assets/sprites/base.png" id="3_fsvm5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6i6e"]
+size = Vector2(574, 191)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8a78f"]
+size = Vector2(574, 95)
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource("1_rjvk8")
+
+[node name="BackgroundParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(574, 0)
+
+[node name="Background" type="Node2D" parent="BackgroundParallaxLayer"]
+
+[node name="Background-day" type="Sprite2D" parent="BackgroundParallaxLayer/Background"]
+position = Vector2(287, 512)
+scale = Vector2(1.99306, 2)
+texture = ExtResource("2_5b5ye")
+
+[node name="BaseParallaxLayer" type="ParallaxLayer" parent="."]
+top_level = true
+visibility_layer = 16
+z_index = 1000
+z_as_relative = false
+y_sort_enabled = true
+motion_mirroring = Vector2(574, 0)
+
+[node name="Base" type="Node2D" parent="BaseParallaxLayer"]
+
+[node name="Base" type="Sprite2D" parent="BaseParallaxLayer/Base"]
+position = Vector2(287, 928.25)
+scale = Vector2(1.70833, 1.70982)
+texture = ExtResource("3_fsvm5")
+
+[node name="Floor" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(287, 928.5)
+shape = SubResource("RectangleShape2D_f6i6e")
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(287, -47.5)
+shape = SubResource("RectangleShape2D_8a78f")
+
+[connection signal="body_entered" from="Floor" to="." method="_on_floor_body_entered"]

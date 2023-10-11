@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdhhglogdptkr"]
+
+[ext_resource type="Script" path="res://scripts/ScoreLabel.gd" id="1_7qk1l"]
+[ext_resource type="Texture2D" uid="uid://b5arxbdns2q30" path="res://assets/sprites/0.png" id="2_5epit"]
+
+[node name="ScoreLabel" type="Node2D"]
+script = ExtResource("1_7qk1l")
+metadata/isHighScore = true
+
+[node name="0" type="Sprite2D" parent="."]
+texture = ExtResource("2_5epit")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ca383j8nq64ww"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_2otpv"]
+[ext_resource type="PackedScene" uid="uid://cehxu24xoab10" path="res://scenes/ParallaxBackground.tscn" id="1_p58n2"]
+[ext_resource type="PackedScene" uid="uid://c4emwh2e4h7s6" path="res://scenes/Bird.tscn" id="2_0ms2i"]
+[ext_resource type="PackedScene" uid="uid://cdhhglogdptkr" path="res://scenes/ScoreLabel.tscn" id="4_vsdhw"]
+[ext_resource type="AudioStream" uid="uid://cfe0i1fqhatc3" path="res://assets/audio/hit.wav" id="5_x8273"]
+
+[node name="main" type="Node2D"]
+clip_children = 1
+script = ExtResource("1_2otpv")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_p58n2")]
+
+[node name="Bird" parent="." instance=ExtResource("2_0ms2i")]
+z_index = 10
+position = Vector2(141, 316)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="ScoreLabel" parent="." instance=ExtResource("4_vsdhw")]
+position = Vector2(287, 67)
+metadata/isHighScore = false
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_x8273")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

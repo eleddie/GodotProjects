@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhq8d03sgvfny"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_gf6gj"]
+[ext_resource type="PackedScene" uid="uid://cehxu24xoab10" path="res://scenes/ParallaxBackground.tscn" id="1_u8h3h"]
+[ext_resource type="Texture2D" uid="uid://b827nnfousvpg" path="res://assets/sprites/message.png" id="2_o0hur"]
+[ext_resource type="PackedScene" uid="uid://cdhhglogdptkr" path="res://scenes/ScoreLabel.tscn" id="4_xej7m"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_gf6gj")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_u8h3h")]
+
+[node name="TextureButton" type="TextureButton" parent="."]
+visibility_layer = 4
+z_index = 5
+offset_right = 576.0
+offset_bottom = 1024.0
+
+[node name="Message" type="Sprite2D" parent="TextureButton"]
+position = Vector2(287, 451)
+texture = ExtResource("2_o0hur")
+
+[node name="BestScore" type="Node2D" parent="."]
+position = Vector2(287, 20)
+
+[node name="Label" type="Label" parent="BestScore"]
+offset_left = -51.9252
+offset_top = 2.34409
+offset_right = 52.0748
+offset_bottom = 28.3441
+text = "Best Score:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" parent="BestScore" instance=ExtResource("4_xej7m")]
+position = Vector2(0.0747986, 54.3441)
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
